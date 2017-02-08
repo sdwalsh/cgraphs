@@ -25,17 +25,12 @@ typedef struct {
   edge* e;
 } graph;
 
-double randomDouble();
-
-double distance(point p1, point p2);
-
-double getWeight(vertex v1, vertex v2);
+double weight(vertex v1, vertex v2);
 
 vertex* generateVertices(int n, int d);
 
 edge* generateEdges(int n, vertex* v);
 
 graph* generateGraph(int n, int d);
-
 
 #endif
