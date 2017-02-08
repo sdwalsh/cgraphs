@@ -17,10 +17,10 @@ typedef struct {
   double weight;
 } edge;
 
-struct Graph {
+typedef struct {
   vertex* v;
   edge* e;
-};
+} graph;
 
 double randomDouble() {
   return (double)rand() / (double)RAND_MAX;
@@ -38,6 +38,9 @@ double getWeight(vertex v1, vertex v2) {
 vertex* generateVertices(int n, int d) {
   // allocate enough memory for array of vertices
   vertex* vertices = (vertex*) malloc (n * sizeof(vertex*));
+  if (vertices == NULL) {
+    return NULL;
+  }
   // Generate random 4d Point
   for (int x = 0; x < n; x++) {
     vertices[x].p = (point) {randomDouble(), randomDouble(), randomDouble(), randomDouble()};
@@ -48,6 +51,9 @@ vertex* generateVertices(int n, int d) {
 edge* generateEdges(int n, vertex* v) {
   // allocate enough memory for edges (n^2)
   edge* edges = (edge*) malloc (n * n * sizeof(vertex*));
+  if (edges == NULL) {
+    return NULL;
+  }
   for (int x = 0; x < n; x++) {
     for (int y = 0; y < n; y++) {
       edges[x*y].v1 = &v[y];
@@ -55,6 +61,19 @@ edge* generateEdges(int n, vertex* v) {
       edges[x*y].weight = getWeight(v[y], v[x]);
     }
   }
+  return edges;
+}
+
+graph* generateGraph(int n, int d) {
+  vertex* v = generateVertices(n, d);
+  if (v == NULL) {
+    return NULL;
+  }
+  edge* e = generateEdges(n, v);
+  if (e == NULL) {
+    return NULL;
+  }
+  return &(graph) {v, e};
 }
 
 int main(void) {
@@ -63,5 +82,4 @@ int main(void) {
   int numpoints = 500;
   int numtrails = 0;
   int dimension = 4;
-
 }
