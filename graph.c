@@ -1,26 +1,8 @@
-#include <stdio.h>		/* for fprintf, stderr */
-#include <stdlib.h>		/* for malloc, exit */
-#include <string.h>		/* for strlen, strcpy */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
-
-typedef struct {
-  int x, y, z, w;
-} point;
-
-typedef struct {
-  point p;
-} vertex;
-
-typedef struct {
-  vertex* v1;
-  vertex* v2;
-  double weight;
-} edge;
-
-typedef struct {
-  vertex* v;
-  edge* e;
-} graph;
+#include "graph.h"
 
 double randomDouble() {
   return (double)rand() / (double)RAND_MAX;
@@ -50,7 +32,7 @@ vertex* generateVertices(int n, int d) {
 
 edge* generateEdges(int n, vertex* v) {
   // allocate enough memory for edges (n^2)
-  edge* edges = (edge*) malloc (n * n * sizeof(vertex*));
+  edge* edges = (edge*) malloc (n * n * sizeof(edge*));
   if (edges == NULL) {
     return NULL;
   }
@@ -82,4 +64,9 @@ int main(void) {
   int numpoints = 500;
   int numtrails = 0;
   int dimension = 4;
+
+  graph* g = generateGraph(numpoints, dimension);
+  if (g == NULL) {
+    exit(0);
+  }
 }
