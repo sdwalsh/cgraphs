@@ -1,10 +1,10 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#ifndef GRAPH_H
-#define GRAPH_H
 
 typedef struct {
   int x, y, z, w;
