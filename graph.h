@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "random.h"
 
 typedef struct {
-  int x, y, z, w;
+  double x, y, z, w;
 } point;
 
 typedef struct {
