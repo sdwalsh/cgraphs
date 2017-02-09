@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
         graph.c
         graph.h
-        kruskal.c random.c random.h)
+        kruskal.c random.c random.h qsort.h qsort.c)
 
 add_executable(cgraph ${SOURCE_FILES})
 target_link_libraries(cgraph m)
